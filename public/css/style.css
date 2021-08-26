@@ -35,6 +35,11 @@ a {
 img {
     width: 100%;
 }
+/* CLASS FOR HIDE ADMIN Function */
+.hidden{
+    display: none !important;
+}
+
 .contenedor {
     max-width: 120rem;
     margin: 0 auto;
@@ -90,6 +95,9 @@ h3 {
 .navegacion__enlace:hover {
     color: var(--secundario);
 }
+.cart_icon{
+    color: var(--blanco);   
+}
 
 /** Grid **/
 .grid {
@@ -123,6 +131,17 @@ h3 {
     text-align: center;
     line-height: 1.2;
 }
+.producto_iconos{
+    text-align: center;
+}
+
+.edit_icon{
+    color: var(--blanco);
+}
+.delete_icon{
+    color: var(--blanco);
+}
+
 
 /** Graficos **/
 .grafico {

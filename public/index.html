@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrontEnd Store</title>
     <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body onload="getAllProductos()">
     <header class="header">
         <a href="index.html">
             <img class="header__logo" src="img/logo.png" alt="Logotipo">
@@ -18,147 +20,65 @@
     <nav class="navegacion">
         <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
         <a class="navegacion__enlace" href="nosotros.html">Nosotros</a>
+        <a class="navegacion__enlace addNav" style="display:none" href="addProduct.html">LogOut</a>
+        <a class="navegacion__enlace" href="cart.html"><i class="fas fa-shopping-cart fa-lg cart_icon"></i> Cart</a>
+        
     </nav>
 
     <main class="contenedor">
         <h1>Nuestros Productos</h1>
 
         <div class="grid">
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/1.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">VueJS</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/2.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">AngularJS</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/3.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">ReactJS</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/4.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">Redux</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/5.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">Node.js</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/6.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">SASS</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/7.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">HTML5</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/8.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">Github</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/9.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">BulmaCSS</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/10.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">TypeScript</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/11.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">Drupal</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/12.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">JavaScript</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/13.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">GraphQL</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-            <div class="producto">
-                <a href="producto.html">
-                    <img class="producto__imagen" src="img/14.jpg" alt="imagen camisa">
-                    <div class="producto__informacion">
-                        <p class="producto__nombre">WordPress</p>
-                        <p class="producto__precio">$25</p>
-                    </div>
-                </a>
-            </div>  <!--.producto-->
-
-            <div class="grafico grafico--camisas"></div>
-            <div class="grafico grafico--node"></div>
+            
+ 
         </div>
     </main>
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">Edit Product</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             <form onsubmit="handleModal(event)">
+                    <div class="mb-3">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" name="productModalName" class="form-control prodName">
+                    </div>
+                    <div class="mb-3">
+                    <label class="form-label">Product Description</label>
+                    <input type="text" name="productModalDescription" class="form-control prodDesc">
+                    </div>
+                    <div class="mb-3">
+                    <label class="form-label">Product Image URL</label>
+                    <input type="text" name="productModalImage" class="form-control prodImg">
+                    </div>
+                    <div class="mb-3">
+                    <label class="form-label">Product Price</label>
+                    <input type="number" name="productModalPrice" class="form-control prodPrice">
+                    </div>
+                    <div class="mb-3">
+                    <label class="form-label">Stock</label>
+                    <input type="number" name="stockModal" class="form-control prodStock">
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary btnSubmit">Add</button>
+                </form>       
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <p class="footer__texto">Front End Store - Todos los derechos Reservados 2022.</p>
     </footer>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

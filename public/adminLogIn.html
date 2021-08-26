@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>app Login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"/>
+    <link rel="stylesheet" href="./scss/dist/style.css" />
+  </head>
+  <body>
+    <div class="container container_logIn">
+        <fieldset>
+          <legend>Admin Login</legend>
+          <label>Email</label>
+          <div class="form__email__admin">
+            <input type="email" name="email" placeholder="Put your E-mail" />
+          </div>
+          <label>Password</label>
+          <div class="form__password__admin">
+            <input type="password" name="password" placeholder="Put your Password"/>
+          </div>
+        </fieldset>
+        <div class="form__buttons">
+          <div class="form__redirect-signup">
+            <a href="./register.html">Are You Not Sign Up?</a>
+            <a href="./logIn.html">Log in as User</a>
+          </div>
+          <div class="form__login-button">
+            <input type="submit" value="Log In" class="btn-submit-admin btn btn-primary"></input>
+          </div> 
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/adminLogIn.js"></script>
+
+  </body>
+</html>
