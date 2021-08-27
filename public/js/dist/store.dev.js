@@ -1,7 +1,7 @@
 "use strict";
 
-function getAllProductos() {
-  var getproductos, productos;
+var getAllProductos = function getAllProductos() {
+  var getproductos, productos, getLogIn, getLogInData, role;
   return regeneratorRuntime.async(function getAllProductos$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -12,40 +12,23 @@ function getAllProductos() {
         case 2:
           getproductos = _context.sent;
           productos = getproductos.data;
-          getLogInUser(productos);
+          _context.next = 6;
+          return regeneratorRuntime.awrap(axios('/user/logIn'));
 
-        case 5:
+        case 6:
+          getLogIn = _context.sent;
+          getLogInData = getLogIn;
+          role = getLogInData.data.role;
+          console.log(productos);
+          renderProducts(productos, role);
+
+        case 11:
         case "end":
           return _context.stop();
       }
     }
   });
-}
-
-function getLogInUser(productos) {
-  var getLogIn, getLogInData, role;
-  return regeneratorRuntime.async(function getLogInUser$(_context2) {
-    while (1) {
-      switch (_context2.prev = _context2.next) {
-        case 0:
-          _context2.next = 2;
-          return regeneratorRuntime.awrap(axios('/user/logIn'));
-
-        case 2:
-          getLogIn = _context2.sent;
-          getLogInData = getLogIn;
-          console.log(getLogInData.data);
-          role = getLogInData.data.role;
-          console.log(role);
-          renderProducts(productos, role);
-
-        case 8:
-        case "end":
-          return _context2.stop();
-      }
-    }
-  });
-}
+};
 
 function renderProducts(productos, role) {
   var root = document.querySelector(".grid");
@@ -68,21 +51,61 @@ function renderProducts(productos, role) {
 
 function selectedProd(id) {
   var postIdSelectedProd;
-  return regeneratorRuntime.async(function selectedProd$(_context3) {
+  return regeneratorRuntime.async(function selectedProd$(_context2) {
     while (1) {
-      switch (_context3.prev = _context3.next) {
+      switch (_context2.prev = _context2.next) {
         case 0:
           postIdSelectedProd = axios.post("/product/".concat(id));
 
         case 1:
         case "end":
+          return _context2.stop();
+      }
+    }
+  });
+} // MODAL ADD
+
+
+function handleAddProd(e) {
+  e.preventDefault();
+  var productName = e.target.elements.productName.value;
+  var productDescription = e.target.elements.productDescription.value;
+  var productImage = e.target.elements.productImage.value;
+  var productPrice = e.target.elements.productPrice.value;
+  var stock = e.target.elements.stock.value;
+  var newProd = {
+    productName: productName,
+    productDescription: productDescription,
+    productImage: productImage,
+    productPrice: productPrice,
+    stock: stock
+  };
+  postProd(newProd);
+}
+
+function postProd(newProd) {
+  var response;
+  return regeneratorRuntime.async(function postProd$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.next = 2;
+          return regeneratorRuntime.awrap(axios.post('/product/addProducts', newProd));
+
+        case 2:
+          response = _context3.sent;
+          console.log(response);
+
+        case 4:
+        case "end":
           return _context3.stop();
       }
     }
   });
-}
+} // MODAL EDIT
 
-function handleModal(e) {
+
+function handleEditModal(e) {
   e.preventDefault();
   var productName = e.target.elements.productModalName.value;
   var productDescription = e.target.elements.productModalDescription.value;
@@ -137,12 +160,52 @@ function deleteProdId(id) {
     while (1) {
       switch (_context6.prev = _context6.next) {
         case 0:
-          deleteId = axios.post("/product/delete/".concat(id));
+          _context6.next = 2;
+          return regeneratorRuntime.awrap(axios.post("/product/delete/".concat(id)));
 
-        case 1:
+        case 2:
+          deleteId = _context6.sent;
+          getAllProductos();
+
+        case 4:
         case "end":
           return _context6.stop();
       }
     }
   });
-} // <a class="navegacion__enlace" href="addProduct.html">Add Product</a>
+}
+
+var btnSubmit = document.querySelector('.btnSubmit');
+btnSubmit.addEventListener('click', function () {
+  getAllProductos();
+  window.location.reload();
+});
+var btnSubmitAdd = document.querySelector('.btnSubmitAdd');
+btnSubmitAdd.addEventListener('click', function () {
+  getAllProductos();
+  window.location.reload();
+});
+
+function logOut() {
+  var logOut;
+  return regeneratorRuntime.async(function logOut$(_context7) {
+    while (1) {
+      switch (_context7.prev = _context7.next) {
+        case 0:
+          _context7.next = 2;
+          return regeneratorRuntime.awrap(axios("/user/logOut"));
+
+        case 2:
+          logOut = _context7.sent;
+          window.location.href = "http://localhost:3000/";
+
+        case 4:
+        case "end":
+          return _context7.stop();
+      }
+    }
+  });
+}
+
+var logout = document.querySelector('.logout');
+logout.addEventListener('click', logOut);

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FrontEnd Store</title>
     <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="selectedProd()">
@@ -16,12 +17,14 @@
     </header>
 
     <nav class="navegacion">
-        <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
+        <a class="navegacion__enlace navegacion__enlace--activo" href="store.html">Tienda</a>
         <a class="navegacion__enlace" href="nosotros.html">Nosotros</a>
+        <a class="navegacion__enlace logout" href="addProduct.html">LogOut</a>
+        <a class="navegacion__enlace" href="cart.html"><i class="fas fa-shopping-cart fa-lg cart_icon"></i> Cart</a>
     </nav>
 
     <main class="contenedor">
-        <h1>React JS</h1>
+        <h1>Select Size and Quantity</h1>
 
         <div class="camisa">
             
@@ -31,6 +34,7 @@
     <footer class="footer">
         <p class="footer__texto">Front End Store - Todos los derechos Reservados 2022.</p>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/producto.js"></script>
 </body>

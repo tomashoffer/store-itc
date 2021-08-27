@@ -12,17 +12,40 @@ async function selectedProd(){
       <div class="camisa__contenido">
           <h3>${producto.productName}</h3>
           <p>${producto.productDescription}</p>
+          <h3>PRICE FOR EACH: $${producto.productPrice},-</h3>
+          <h3>stock: ${producto.stock}</h3>
 
-          <form class="formulario">
-              <select class="formulario__campo">
-                  <option disabled selected>-- Seleccionar Talla --</option>
-                  <option>Chica</option>
-                  <option>Mediana</option>
-                  <option>Grande</option>
+          <form class="formulario" onsubmit="handleProduct(event)">
+              <select name="size" class="formulario__campo">
+                  <option disabled selected>-- Select Size --</option>
+                  <option value="XS" class="option_size">XS</option>
+                  <option value="M" class="option_size">M</option>
+                  <option value="L" class="option_size">L</option>
               </select>
-              <input class="formulario__campo" type="number" placeholder="Cantidad" min="1">
+              <input class="formulario__campo input_quantity" type="number" placeholder="Cantidad" min="1" name="quantity">
               <input class="formulario__submit" type="submit" value="Agregar al Carrito">
           </form>
       </div> `;
       root.innerHTML = html;
   }  
+function handleProduct(e){
+    e.preventDefault();
+    const size = e.target.elements.size.value;
+    const quantity = e.target.elements.quantity.value;
+    const newOrder = {size, quantity};
+    console.log(newOrder);
+    postOrder(newOrder);
+}
+
+async function postOrder(newOrder) {
+    const order = await axios.post('cart/postOrder', newOrder);
+}
+
+// lOGOUT
+async function logOut(){
+    const logOut = await axios(`/user/logOut`);
+   window.location.href = "http://localhost:3000/";
+  }
+  
+  const logout = document.querySelector('.logout');
+  logout.addEventListener('click', logOut)

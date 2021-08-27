@@ -14,10 +14,12 @@ app.use(express.static('public'));
 // IMPORT ROUTES FILES
 const userRoute = require('./routes/userRoutes');
 const productRoute = require('./routes/porductRoutes');
+const cartRoute = require('./routes/cartRoutes');
 
 // ROUTES
 app.use('/user', userRoute);
 app.use('/product', productRoute);
+app.use('/cart', cartRoute);
 
 
 app.listen(port, () => { console.log('listen on 3000') })

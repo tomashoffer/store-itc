@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.editProdCookie = exports.selectedProd = exports.sendCookieUser = void 0;
+exports.logOutUser = exports.editProdCookie = exports.selectedProd = exports.sendCookieUser = void 0;
 var _a = require('../modal/user'), readAllUsers = _a.readAllUsers, readAdminUser = _a.readAdminUser;
 function sendCookieUser(req, res, next) {
     var email = req.body.email;
@@ -13,15 +13,6 @@ function sendCookieUser(req, res, next) {
 }
 exports.sendCookieUser = sendCookieUser;
 ;
-// export function sendCookieAdmin(req, res, next) {
-//     if (!req.cookies.adminLogIn) {
-//        const { email } = req.body;
-//        const allAdmin = readAdminUser();
-//        const admin = allAdmin.find((user) => user.email === email);  
-//       res.cookie('adminLogIn', JSON.stringify(admin), { maxAge: 900000, httpOnly: true });
-//     }
-//     next();
-//   };
 function selectedProd(req, res, next) {
     var id = req.params.id;
     res.cookie("idProdSelected", id, { maxAge: 300000000, httpOnly: true });
@@ -34,3 +25,9 @@ function editProdCookie(req, res, next) {
     res.send({ ok: 'succes' });
 }
 exports.editProdCookie = editProdCookie;
+function logOutUser(req, res) {
+    res.clearCookie('userIdLogIn');
+    console.log('llego');
+    res.send({ ok: 'succes' });
+}
+exports.logOutUser = logOutUser;

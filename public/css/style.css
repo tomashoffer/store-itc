@@ -23,6 +23,7 @@ body {
     background-color: var(--primario);
     font-size: 1.6rem;
     line-height: 1.5;
+
 }
 p {
     font-size: 1.8rem;
@@ -94,9 +95,6 @@ h3 {
 .navegacion__enlace--activo,
 .navegacion__enlace:hover {
     color: var(--secundario);
-}
-.cart_icon{
-    color: var(--blanco);   
 }
 
 /** Grid **/
@@ -241,4 +239,13 @@ h3 {
 .formulario__submit:hover {
     cursor: pointer;
     background-color: var(--secundarioOscuro);
+}
+.option_size{
+    color: black;
+}
+.input_quantity::placeholder{
+    color: var(--blanco);
+}
+.input_quantity{
+    background-color: var(--primario)
 }

@@ -25,4 +25,3 @@ export function logInAdmin(req: any, res: any) {
         console.log('User log in')
         res.send({ok:'success log in'})
 }
-

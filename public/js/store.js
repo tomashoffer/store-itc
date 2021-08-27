@@ -1,16 +1,13 @@
-async function getAllProductos(){
-    const getproductos = await axios('/product/getProducts') 
+const getAllProductos = async () => {
+    const getproductos = await axios('/product/getProducts');
     const productos = getproductos.data;
-    getLogInUser(productos)
-}
-async function getLogInUser(productos){
-    const getLogIn = await axios('/user/logIn') 
+    const getLogIn = await axios('/user/logIn');
     const getLogInData = getLogIn;
-    console.log(getLogInData.data)
     const role = getLogInData.data.role;
-    console.log(role);
-    renderProducts(productos, role)
+    console.log(productos);
+    renderProducts(productos, role);
 }
+
 
 function renderProducts(productos, role){
     const root = document.querySelector(".grid");
@@ -56,27 +53,64 @@ function renderProducts(productos, role){
   async function selectedProd(id){
     const postIdSelectedProd = axios.post(`/product/${id}`);
   }
+  
+// MODAL ADD
+  function handleAddProd(e){
+    e.preventDefault();
+    const productName = e.target.elements.productName.value;
+    const productDescription = e.target.elements.productDescription.value;
+    const productImage = e.target.elements.productImage.value;
+    const productPrice = e.target.elements.productPrice.value;
+    const stock = e.target.elements.stock.value;
+    const newProd = {productName, productDescription, productImage, productPrice, stock}
+    postProd(newProd);
+}
 
-function handleModal(e){
+async function postProd(newProd){
+    const response = await axios.post('/product/addProducts', newProd);
+    console.log(response);
+}
+
+// MODAL EDIT
+function handleEditModal(e){
   e.preventDefault();
   const productName = e.target.elements.productModalName.value;
   const productDescription = e.target.elements.productModalDescription.value;
   const productImage = e.target.elements.productModalImage.value;
   const productPrice = e.target.elements.productModalPrice.value;
   const stock = e.target.elements.stockModal.value;
-  const newProdData = {productName, productDescription, productImage, productPrice, stock}
-  editProductData(newProdData)
+  const newProdData = {productName, productDescription, productImage, productPrice, stock};
+  editProductData(newProdData);
 }
 
 async function editProductData(newProdData){
-  const editId = axios.post(`/product/edit`, newProdData)
+  const editId = axios.post(`/product/edit`, newProdData);
 }
 
 async function editProdId(id){
-    const editId = axios.post(`/product/edit/${id}`)
+    const editId = axios.post(`/product/edit/${id}`);
 }
 async function deleteProdId(id){
-    const deleteId = axios.post(`/product/delete/${id}`)
+    const deleteId = await axios.post(`/product/delete/${id}`);
+    getAllProductos();
 }
 
-// <a class="navegacion__enlace" href="addProduct.html">Add Product</a>
+const btnSubmit = document.querySelector('.btnSubmit');
+btnSubmit.addEventListener('click', () => {
+  getAllProductos();
+  window.location.reload();})
+
+const btnSubmitAdd = document.querySelector('.btnSubmitAdd');
+btnSubmitAdd.addEventListener('click', () => {
+  getAllProductos();
+  window.location.reload();})
+
+  async function logOut(){
+    const logOut = await axios(`/user/logOut`);
+   window.location.href = "http://localhost:3000/";
+  }
+  
+  const logout = document.querySelector('.logout');
+  logout.addEventListener('click', logOut)
+
+
