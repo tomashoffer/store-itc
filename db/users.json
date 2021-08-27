@@ -1,1 +1,50 @@
-[{"name":"tomas","email":"admin@admin.com","password":"$2b$10$SmuyATEsEan5UMqJBdpKG.j8XUZdxkHwMQAcmr/ORefqOyhBLnsoq","role":"admin","id":"dfd47494-602a-4b2a-9030-a372b7f225b3","cart":[]},{"name":"Tomas Hoffer","email":"matias@gmai.com","password":"$2b$10$ezINnxIGUe1tcpMEJecSUuBZj8hzTj66/5FPpfG86auRbY406zeSm","role":"user","id":"47d3537f-5f72-4711-97e3-d3e762c21032","cart":[]},{"name":"marcos","email":"alfonso@gmail.com","password":"$2b$10$zfAbSJshIYpiju6Apag5reFwFqbILCb3vxeNEqHMK2YgJYnhO2dEq","role":"user","id":"8a8fd6fe-ca10-4c89-873a-81ccccd020c5","cart":[]},{"name":"matias","email":"acidcashdave@gmail.com","password":"$2b$10$nU/Zg7xxpcPX281WGM95c.S8vGOt/ZK3WiqFDhWLtoC/3MhhYn98S","role":"user","id":"7c501ed2-902d-48e0-b99e-af7c5ca11afa","cart":[]},{"name":"yoni","email":"yoni@yoni.com","password":"$2b$10$w0X4z4aA1YZ/OOcg7AEVmeoehjlEzWnA4xhWc3ANASU5Kr0k6jBIy","role":"user","id":"080881d4-47ba-407f-b54d-8b2b62bc432e","cart":[]},{"name":"tomas","email":"tomas@tomas.com","password":"$2b$10$oa.c1IwzKD6PcHGVljfRkOVJjaWpEdknXsYj4G1js.xuYpU2Dr33W","role":"user","id":"6011990f-18b0-4534-9d69-bd334bbbaa89","cart":[]}]
+[
+    {
+        "name": "tomas",
+        "email": "admin@admin.com",
+        "password": "$2b$10$SmuyATEsEan5UMqJBdpKG.j8XUZdxkHwMQAcmr/ORefqOyhBLnsoq",
+        "role": "admin",
+        "id": "dfd47494-602a-4b2a-9030-a372b7f225b3",
+        "cart": []
+    },
+    {
+        "name": "Tomas Hoffer",
+        "email": "matias@gmai.com",
+        "password": "$2b$10$ezINnxIGUe1tcpMEJecSUuBZj8hzTj66/5FPpfG86auRbY406zeSm",
+        "role": "user",
+        "id": "47d3537f-5f72-4711-97e3-d3e762c21032",
+        "cart": []
+    },
+    {
+        "name": "marcos",
+        "email": "alfonso@gmail.com",
+        "password": "$2b$10$zfAbSJshIYpiju6Apag5reFwFqbILCb3vxeNEqHMK2YgJYnhO2dEq",
+        "role": "user",
+        "id": "8a8fd6fe-ca10-4c89-873a-81ccccd020c5",
+        "cart": []
+    },
+    {
+        "name": "matias",
+        "email": "acidcashdave@gmail.com",
+        "password": "$2b$10$nU/Zg7xxpcPX281WGM95c.S8vGOt/ZK3WiqFDhWLtoC/3MhhYn98S",
+        "role": "user",
+        "id": "7c501ed2-902d-48e0-b99e-af7c5ca11afa",
+        "cart": []
+    },
+    {
+        "name": "yoni",
+        "email": "yoni@yoni.com",
+        "password": "$2b$10$w0X4z4aA1YZ/OOcg7AEVmeoehjlEzWnA4xhWc3ANASU5Kr0k6jBIy",
+        "role": "user",
+        "id": "080881d4-47ba-407f-b54d-8b2b62bc432e",
+        "cart": []
+    },
+    {
+        "name": "tomas",
+        "email": "tomas@tomas.com",
+        "password": "$2b$10$oa.c1IwzKD6PcHGVljfRkOVJjaWpEdknXsYj4G1js.xuYpU2Dr33W",
+        "role": "user",
+        "id": "6011990f-18b0-4534-9d69-bd334bbbaa89",
+        "cart": []
+    }
+]

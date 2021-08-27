@@ -50,9 +50,10 @@ function getLogInUser(productos) {
 function renderProducts(productos, role) {
   var root = document.querySelector(".grid");
   var html = "";
-  var navbar = document.querySelector('.navegation');
+  var addLink = document.querySelector('.addNav');
 
   if (role === "admin") {
+    addLink.style.display = 'inline';
     productos.forEach(function (prod) {
       html += "   <div class=\"producto\">\n        <a href=\"producto.html\" onclick='selectedProd(\"".concat(prod.id, "\")'>\n            <img class=\"producto__imagen\" src=\"").concat(prod.productImage, "\" alt=\"imagen camisa\">\n            <div class=\"producto__informacion\">\n                <p class=\"producto__nombre\">").concat(prod.productName, "</p>\n                <p class=\"producto__precio\">Description: ").concat(prod.productDescription, "</p>\n                <p class=\"producto__precio\">$").concat(prod.productPrice, "</p>\n                <p class=\"producto__precio\">Stock: ").concat(prod.stock, "</p>\n                <div class=\"producto_iconos\">\n                <a href=\"\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\" onclick='editProdId(\"").concat(prod.id, "\")'><i class=\"edit_icon fas fa-edit\"></i></a>\n                <a href=\"\" class=\"hola\" onclick='deleteProdId(\"").concat(prod.id, "\")'><i class=\"delete_icon fas fa-trash\"></i></a>\n                </div>\n            </div>\n        </a>\n    </div> ");
     });
@@ -144,4 +145,4 @@ function deleteProdId(id) {
       }
     }
   });
-}
+} // <a class="navegacion__enlace" href="addProduct.html">Add Product</a>

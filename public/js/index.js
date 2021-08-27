@@ -15,8 +15,9 @@ async function getLogInUser(productos){
 function renderProducts(productos, role){
     const root = document.querySelector(".grid");
     let html = "";
-    const navbar = document.querySelector('.navegation');
+    const addLink = document.querySelector('.addNav');
     if(role === "admin"){
+      addLink.style.display = 'inline'
       productos.forEach((prod) => {
         html += `   <div class="producto">
         <a href="producto.html" onclick='selectedProd("${prod.id}")'>
@@ -78,3 +79,4 @@ async function deleteProdId(id){
     const deleteId = axios.post(`/product/delete/${id}`)
 }
 
+// <a class="navegacion__enlace" href="addProduct.html">Add Product</a>
