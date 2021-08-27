@@ -1,4 +1,4 @@
-const { readAllUsers, readAdminUser } = require('../modal/user');
+const { readAllUsers } = require('../modal/user');
 
 export function sendCookieUser(req, res, next) {
       const { email } = req.body;

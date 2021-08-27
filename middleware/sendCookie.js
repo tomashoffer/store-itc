@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.logOutUser = exports.editProdCookie = exports.selectedProd = exports.sendCookieUser = void 0;
-var _a = require('../modal/user'), readAllUsers = _a.readAllUsers, readAdminUser = _a.readAdminUser;
+var readAllUsers = require('../modal/user').readAllUsers;
 function sendCookieUser(req, res, next) {
     var email = req.body.email;
     var allUsers = readAllUsers();

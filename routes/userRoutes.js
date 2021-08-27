@@ -14,4 +14,5 @@ router.post('/register', validateUser_1.validateUser(schemaUser_1.schemaUsers), 
 router.post('/logIn', validateUser_1.validateUser(schemaUser_1.schemaLogIn), encriptPsw_1.compareLogin, sendCookie_1.sendCookieUser, userControllers_1.logInUser);
 router.get('/logIn', userControllers_1.logInUser);
 router.get('/logOut', sendCookie_1.logOutUser);
+router.get('/allUsers', userControllers_1.getAllUsers);
 module.exports = router;

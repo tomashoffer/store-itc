@@ -25,3 +25,9 @@ export function logInAdmin(req: any, res: any) {
         console.log('User log in')
         res.send({ok:'success log in'})
 }
+
+export function getAllUsers(req: any, res: any) {
+        const allUsers = readAllUsers();
+        res.send(allUsers);
+}
+

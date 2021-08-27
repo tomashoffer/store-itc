@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.compareAdminLogin = exports.compareLogin = exports.encryptPwd = void 0;
+exports.compareLogin = exports.encryptPwd = void 0;
 var bcrypt = require('bcrypt');
-var _a = require('../modal/user'), readAllUsers = _a.readAllUsers, readAdminUser = _a.readAdminUser;
+var readAllUsers = require('../modal/user').readAllUsers;
 function encryptPwd(req, res, next) {
     var password = req.body.password;
     var saltRounds = 10;
@@ -87,25 +87,3 @@ function compareLogin(req, res, next) {
     });
 }
 exports.compareLogin = compareLogin;
-function compareAdminLogin(req, res, next) {
-    return __awaiter(this, void 0, void 0, function () {
-        var email_1, password, adminUser, admin;
-        return __generator(this, function (_a) {
-            try {
-                email_1 = req.body.email;
-                password = req.body.password;
-                adminUser = readAdminUser();
-                admin = adminUser.find(function (user) { return user.email === email_1; });
-                if (admin == null || admin.password != password) {
-                    return [2 /*return*/, res.status(400).send('Your email or password is incorrect')];
-                }
-                next();
-            }
-            catch (err) {
-                res.status(500).send();
-            }
-            return [2 /*return*/];
-        });
-    });
-}
-exports.compareAdminLogin = compareAdminLogin;

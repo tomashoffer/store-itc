@@ -1,22 +1,23 @@
 "use strict";
 exports.__esModule = true;
-exports.CartMethods = exports.Cart = exports.readAllProducts = exports.readAllCarts = exports.readAllUsers = void 0;
+exports.CartMethods = exports.Cart = exports.readAllProducts = exports.readAllSells = exports.readAllUsers = void 0;
 var fs = require("fs");
 var path = require('path');
 var pathToUsersJson = path.resolve(__dirname, '../db/users.json');
-var pathToCartsJson = path.resolve(__dirname, '../db/cart.json');
+var pathToSellsJson = path.resolve(__dirname, '../db/sells.json');
 var pathToProductsJson = path.resolve(__dirname, '../db/product.json');
+var uuidv4 = require("uuid").v4;
 function readAllUsers() {
     var allUsers = fs.readFileSync(pathToUsersJson);
     return JSON.parse(allUsers);
 }
 exports.readAllUsers = readAllUsers;
 ;
-function readAllCarts() {
-    var allCarts = fs.readFileSync(pathToCartsJson);
-    return JSON.parse(allCarts);
+function readAllSells() {
+    var allSells = fs.readFileSync(pathToSellsJson);
+    return JSON.parse(allSells);
 }
-exports.readAllCarts = readAllCarts;
+exports.readAllSells = readAllSells;
 ;
 function readAllProducts() {
     var allProd = fs.readFileSync(pathToProductsJson);
@@ -38,6 +39,10 @@ var CartMethods = /** @class */ (function () {
         var allUsers = readAllUsers();
         allUsers[indexUser].cart.push(order);
         fs.writeFileSync(pathToUsersJson, JSON.stringify(allUsers));
+        // console.log(order)
+        // const array = 
+        // const allSells = readAllSells();
+        // fs.writeFileSync(pathToSellsJson, JSON.stringify(order));
     };
     ;
     return CartMethods;

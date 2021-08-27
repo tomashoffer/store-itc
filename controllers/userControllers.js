@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.logInAdmin = exports.logInUser = exports.registerUser = void 0;
+exports.getAllUsers = exports.logInAdmin = exports.logInUser = exports.registerUser = void 0;
 var user_1 = require("../modal/user");
 var uuidv4 = require("uuid").v4;
 var cookieParser = require("cookie-parser");
@@ -26,3 +26,8 @@ function logInAdmin(req, res) {
     res.send({ ok: 'success log in' });
 }
 exports.logInAdmin = logInAdmin;
+function getAllUsers(req, res) {
+    var allUsers = user_1.readAllUsers();
+    res.send(allUsers);
+}
+exports.getAllUsers = getAllUsers;

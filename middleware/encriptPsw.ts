@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { readAllUsers, readAdminUser } = require('../modal/user');
+const { readAllUsers } = require('../modal/user');
 
 export function encryptPwd(req, res, next){
   const { password } = req.body;
@@ -30,19 +30,4 @@ export async function compareLogin(req, res, next){
     }catch(err){
         res.status(500).send()
     }
-}
-
-
-export async function compareAdminLogin(req, res, next){
-  try{
-  const { email } = req.body;
-  const { password } = req.body;
-  const adminUser = readAdminUser();
-  const admin = adminUser.find((user) => user.email === email);
-if(admin == null || admin.password != password) {
-  return res.status(400).send('Your email or password is incorrect');
-} next();
-}catch(err){
-    res.status(500).send()
-}
 }

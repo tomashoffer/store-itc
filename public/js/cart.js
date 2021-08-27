@@ -1,23 +1,68 @@
-async function getUser(){
-    const getUser = await axios('/user/logIn');
-    const data = getUser.data.cart;
-    renderTable(data);
-}
+// async function getUser(){
+//     const getUser = await axios('/user/logIn');
+//     const data = getUser.data.cart;
+//     const role = getUser.data.role;
+//     renderTable(data);
+// }
 
-function renderTable(data){
+// function renderTable(data){
+//     const root = document.querySelector(".cart_row");
+//     let html = "";
+//     data.forEach((prod)=>{
+//         html += `<tr>
+//         <th scope="row"><img style="height: 6rem; width: 6rem;" src="${prod.productImage}" alt=""></th>
+//         <td>${prod.productName}</td>
+//         <td>${prod.size}</td>
+//         <td>${prod.quantity}</td>
+//         <td>${prod.productPrice}</td>
+//         <td>${prod.productPrice * prod.quantity}</td>
+//         </tr>`
+//         totalToPay(prod.productPrice * prod.quantity)
+//     });
+//     root.innerHTML = html;
+// }
+
+async function renderTable(){
+    const getCurrentUser = await axios('/user/logIn');
+    const data = getCurrentUser.data.cart;
+    const role = getCurrentUser.data.role;
+    console.log(role)
+
+    const getAllUsers = await axios('/user/allUsers');
+    const dataAllUsers = getAllUsers.data;
+    // console.log(dataAllUsers)
+
     const root = document.querySelector(".cart_row");
     let html = "";
-    data.forEach((prod)=>{
-        html += `<tr>
-        <th scope="row"><img style="height: 6rem; width: 6rem;" src="${prod.productImage}" alt=""></th>
-        <td>${prod.productName}</td>
-        <td>${prod.size}</td>
-        <td>${prod.quantity}</td>
-        <td>${prod.productPrice}</td>
-        <td>${prod.productPrice * prod.quantity}</td>
-        </tr>`
-        totalToPay(prod.productPrice * prod.quantity)
-    });
+    if(role === "admin"){
+        dataAllUsers.forEach((user) =>{
+            const allCarts = user.cart;
+            allCarts.forEach((cart) =>{
+                html += `<tr>
+            <th scope="row"><img style="height: 6rem; width: 6rem;" src="${cart.productImage}" alt=""></th>
+            <td>${cart.productName}</td>
+            <td>${cart.size}</td>
+            <td>${cart.quantity}</td>
+            <td>${cart.productPrice}</td>
+            <td>${cart.productPrice * cart.quantity}</td>
+            </tr>`
+            totalToPay(cart.productPrice * cart.quantity)
+            })
+           
+        })
+      }else{
+        data.forEach((prod)=>{
+            html += `<tr>
+            <th scope="row"><img style="height: 6rem; width: 6rem;" src="${prod.productImage}" alt=""></th>
+            <td>${prod.productName}</td>
+            <td>${prod.size}</td>
+            <td>${prod.quantity}</td>
+            <td>${prod.productPrice}</td>
+            <td>${prod.productPrice * prod.quantity}</td>
+            </tr>`
+            totalToPay(prod.productPrice * prod.quantity)
+        });
+      }
     root.innerHTML = html;
 }
 
@@ -41,3 +86,14 @@ async function logOut(){
   
   const logout = document.querySelector('.logout');
   logout.addEventListener('click', logOut)
+
+
+
+
+
+
+
+
+
+
+
