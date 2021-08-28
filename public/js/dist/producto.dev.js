@@ -1,7 +1,7 @@
 "use strict";
 
 function selectedProd() {
-  var getProdSelected;
+  var getProdSelected, data;
   return regeneratorRuntime.async(function selectedProd$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -11,9 +11,10 @@ function selectedProd() {
 
         case 2:
           getProdSelected = _context.sent;
-          renderProducts(getProdSelected.data);
+          data = getProdSelected.data;
+          renderProducts(data);
 
-        case 4:
+        case 5:
         case "end":
           return _context.stop();
       }

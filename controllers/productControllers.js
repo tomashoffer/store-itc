@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.deleteProd = exports.editProducts = exports.getProdSelected = exports.getProducts = exports.addProducts = void 0;
+exports.updateStock = exports.deleteProd = exports.editProducts = exports.getProdSelected = exports.getProducts = exports.addProducts = void 0;
 var product_1 = require("../modal/product");
 var uuidv4 = require("uuid").v4;
 var cookieParser = require("cookie-parser");
@@ -37,3 +37,10 @@ function deleteProd(req, res) {
     res.send({ "ok": 'success delete' });
 }
 exports.deleteProd = deleteProd;
+function updateStock(req, res) {
+    var updateStock = req.body;
+    console.log(updateStock);
+    methodProd.decreseStock(updateStock);
+    res.send({ "ok": 'success update stock' });
+}
+exports.updateStock = updateStock;

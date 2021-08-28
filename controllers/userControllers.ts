@@ -17,7 +17,6 @@ export function logInUser(req: any, res: any) {
         const { userIdLogIn } = req.cookies;
         const allUsers = readAllUsers();
         const getLogInUser = allUsers.find(user => user.id === userIdLogIn);
-        console.log(getLogInUser)
         res.send(getLogInUser)
 }
 

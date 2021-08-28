@@ -1,7 +1,7 @@
 async function selectedProd(){
     const getProdSelected = await axios(`/product`);
-    
-    renderProducts(getProdSelected.data)
+    const data = getProdSelected.data;
+    renderProducts(data);
   }
 
   function renderProducts(producto){

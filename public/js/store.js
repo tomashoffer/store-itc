@@ -2,9 +2,7 @@ const getAllProductos = async () => {
     const getproductos = await axios('/product/getProducts');
     const productos = getproductos.data;
     const getLogIn = await axios('/user/logIn');
-    const getLogInData = getLogIn;
-    const role = getLogInData.data.role;
-    console.log(productos);
+    const role = getLogIn.data.role;
     renderProducts(productos, role);
 }
 
@@ -21,7 +19,7 @@ function renderProducts(productos, role){
             <img class="producto__imagen" src="${prod.productImage}" alt="imagen camisa">
             <div class="producto__informacion">
                 <p class="producto__nombre">${prod.productName}</p>
-                <p class="producto__precio">Description: ${prod.productDescription}</p>
+              
                 <p class="producto__precio">$${prod.productPrice}</p>
                 <p class="producto__precio">Stock: ${prod.stock}</p>
                 <div class="producto_iconos">
@@ -39,7 +37,6 @@ function renderProducts(productos, role){
             <img class="producto__imagen" src="${prod.productImage}" alt="imagen camisa">
             <div class="producto__informacion">
                 <p class="producto__nombre">${prod.productName}</p>
-                <p class="producto__precio">Description: ${prod.productDescription}</p>
                 <p class="producto__precio">$${prod.productPrice}</p>
                 <p class="producto__precio">Stock: ${prod.stock}</p>
             </div>
@@ -103,8 +100,44 @@ btnSubmit.addEventListener('click', () => {
 const btnSubmitAdd = document.querySelector('.btnSubmitAdd');
 btnSubmitAdd.addEventListener('click', () => {
   getAllProductos();
-  window.location.reload();})
+  window.location.reload();});
 
+// SEARCH BAR
+  async function regExSurvey(searchBar){
+    try {
+      const getproductos = await axios('/product/getProducts');
+      const productos = getproductos.data;
+      const getLogIn = await axios('/user/logIn');
+      const role = getLogIn.data.role;
+
+      let newArray = [];
+      for(let i = 0; i < productos.length; i++){
+        const regExp = `^${searchBar}`;
+        const searchTermReg= new RegExp(regExp, 'g');  
+        newArray = productos.filter(elem => searchTermReg.test(elem.productName));
+  
+      }
+      renderProducts(newArray, role);
+    } catch (e) {
+        console.error(e)
+    }
+  }
+  
+  const searchProduct = (ev) => {
+      try {
+          ev.preventDefault();
+          const searchBar = ev.target.parentElement.elements.searchBar.value;
+          regExSurvey(searchBar);
+      } catch (e) {
+          console.error(e)
+      }
+  }
+  // EVENTLISTENERS
+const searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('keyup', searchProduct);
+
+
+  // LOGOUT
   async function logOut(){
     const logOut = await axios(`/user/logOut`);
    window.location.href = "http://localhost:3000/";

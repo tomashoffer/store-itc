@@ -17,7 +17,6 @@ function logInUser(req, res) {
     var userIdLogIn = req.cookies.userIdLogIn;
     var allUsers = user_1.readAllUsers();
     var getLogInUser = allUsers.find(function (user) { return user.id === userIdLogIn; });
-    console.log(getLogInUser);
     res.send(getLogInUser);
 }
 exports.logInUser = logInUser;

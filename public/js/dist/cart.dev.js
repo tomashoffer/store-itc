@@ -1,27 +1,5 @@
 "use strict";
 
-// async function getUser(){
-//     const getUser = await axios('/user/logIn');
-//     const data = getUser.data.cart;
-//     const role = getUser.data.role;
-//     renderTable(data);
-// }
-// function renderTable(data){
-//     const root = document.querySelector(".cart_row");
-//     let html = "";
-//     data.forEach((prod)=>{
-//         html += `<tr>
-//         <th scope="row"><img style="height: 6rem; width: 6rem;" src="${prod.productImage}" alt=""></th>
-//         <td>${prod.productName}</td>
-//         <td>${prod.size}</td>
-//         <td>${prod.quantity}</td>
-//         <td>${prod.productPrice}</td>
-//         <td>${prod.productPrice * prod.quantity}</td>
-//         </tr>`
-//         totalToPay(prod.productPrice * prod.quantity)
-//     });
-//     root.innerHTML = html;
-// }
 function renderTable() {
   var getCurrentUser, data, role, getAllUsers, dataAllUsers, root, html;
   return regeneratorRuntime.async(function renderTable$(_context) {
@@ -41,8 +19,7 @@ function renderTable() {
 
         case 8:
           getAllUsers = _context.sent;
-          dataAllUsers = getAllUsers.data; // console.log(dataAllUsers)
-
+          dataAllUsers = getAllUsers.data;
           root = document.querySelector(".cart_row");
           html = "";
 
@@ -74,32 +51,83 @@ function renderTable() {
 var currentTotal = 0;
 
 function totalToPay(totalToPay) {
-  var total = document.querySelector(".total");
-  currentTotal = currentTotal + totalToPay;
-  var html = "<p>".concat(currentTotal, "</p>");
-  total.innerHTML = html;
-  var paypal = document.querySelector(".paypal");
-  var htmlPaypal = "<button style=\"padding: 1rem; font-size: 2.5rem;\" type=\"button\" class=\"btn btn-warning\">PAY WITH PAYPAL</button>";
-  paypal.innerHTML = htmlPaypal;
+  var total, html, getCurrentUser, role, paypal;
+  return regeneratorRuntime.async(function totalToPay$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          total = document.querySelector(".total");
+          currentTotal = currentTotal + totalToPay;
+          html = "<p>".concat(currentTotal, "</p>");
+          total.innerHTML = html;
+          _context2.next = 6;
+          return regeneratorRuntime.awrap(axios('/user/logIn'));
+
+        case 6:
+          getCurrentUser = _context2.sent;
+          role = getCurrentUser.data.role;
+          paypal = document.querySelector(".paypal");
+
+          if (role === "admin") {
+            htmlPaypal = "";
+          } else {
+            htmlPaypal = "<button style=\"padding: 1rem; font-size: 2.5rem;\" type=\"button\" onclick='handleStock()' class=\"btn btn-warning btn_paypal\">PAY WITH PAYPAL</button>";
+          }
+
+          paypal.innerHTML = htmlPaypal;
+
+        case 11:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  });
+}
+
+function handleStock() {
+  var getCurrentUser, data;
+  return regeneratorRuntime.async(function handleStock$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.next = 2;
+          return regeneratorRuntime.awrap(axios('/user/logIn'));
+
+        case 2:
+          getCurrentUser = _context3.sent;
+          data = getCurrentUser.data.cart;
+          data.forEach(function (prod) {
+            console.log(prod.stock);
+            console.log(prod.quantity);
+            prod.stock = prod.stock - prod.quantity;
+            var decreaseStock = axios.post('/product/updateStock', prod);
+          });
+
+        case 5:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  });
 } // lOGOUT
 
 
 function logOut() {
   var logOut;
-  return regeneratorRuntime.async(function logOut$(_context2) {
+  return regeneratorRuntime.async(function logOut$(_context4) {
     while (1) {
-      switch (_context2.prev = _context2.next) {
+      switch (_context4.prev = _context4.next) {
         case 0:
-          _context2.next = 2;
+          _context4.next = 2;
           return regeneratorRuntime.awrap(axios("/user/logOut"));
 
         case 2:
-          logOut = _context2.sent;
+          logOut = _context4.sent;
           window.location.href = "http://localhost:3000/";
 
         case 4:
         case "end":
-          return _context2.stop();
+          return _context4.stop();
       }
     }
   });

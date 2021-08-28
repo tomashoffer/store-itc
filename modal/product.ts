@@ -47,4 +47,14 @@ export class ProductMethods{
     const deleteProd = allProducts.filter(prod => prod.id !== id);
     fs.writeFileSync(pathToProductJson, JSON.stringify(deleteProd));
   }
+  decreseStock(updateStock){
+    const allProducts = readAllProducts();
+    const arrStock = Object.values(updateStock)
+    arrStock.forEach((prod)=>{
+      const findProdIndex = allProducts.findIndex((prod)=> prod.id === updateStock.id);
+      allProducts[findProdIndex] = updateStock;
+      fs.writeFileSync(pathToProductJson, JSON.stringify(allProducts));
+    })  
+    return allProducts;
+  }
 }

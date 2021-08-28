@@ -47,6 +47,16 @@ var ProductMethods = /** @class */ (function () {
         var deleteProd = allProducts.filter(function (prod) { return prod.id !== id; });
         fs.writeFileSync(pathToProductJson, JSON.stringify(deleteProd));
     };
+    ProductMethods.prototype.decreseStock = function (updateStock) {
+        var allProducts = readAllProducts();
+        var arrStock = Object.values(updateStock);
+        arrStock.forEach(function (prod) {
+            var findProdIndex = allProducts.findIndex(function (prod) { return prod.id === updateStock.id; });
+            allProducts[findProdIndex] = updateStock;
+            fs.writeFileSync(pathToProductJson, JSON.stringify(allProducts));
+        });
+        return allProducts;
+    };
     return ProductMethods;
 }());
 exports.ProductMethods = ProductMethods;

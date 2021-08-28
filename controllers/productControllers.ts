@@ -37,3 +37,10 @@ export function deleteProd(req: any, res: any) {
     methodProd.deleteProducto(id)
     res.send({"ok":'success delete'})
 }
+
+export function updateStock(req: any, res: any) {
+    const updateStock = req.body;
+    console.log(updateStock);
+    methodProd.decreseStock(updateStock)
+    res.send({"ok":'success update stock'})
+}
