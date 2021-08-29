@@ -17,7 +17,7 @@ function createPayment(req, res) {
         },
         "redirect_urls": {
             "return_url": "http://localhost:3000/thankYou.html",
-            "cancel_url": "http://localhost:3000/paypal/cancel.html"
+            "cancel_url": "http://localhost:3000/cancel.html"
         },
         "transactions": [{
                 "item_list": {
