@@ -8,9 +8,10 @@ import {  } from '../middleware/sendCookie';
 
 
 // CONTROLLERS
-import { getOrder } from "../controllers/cartControllers";
+import { getOrder, deleteOrder } from "../controllers/cartControllers";
 
 router.post('/postOrder', getOrder);
+router.post('/deleteOrder/:id', deleteOrder);
 
 
 

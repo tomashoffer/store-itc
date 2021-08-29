@@ -34,7 +34,9 @@ async function renderTable(){
             <td>${prod.quantity}</td>
             <td>${prod.productPrice}</td>
             <td>${prod.productPrice * prod.quantity}</td>
+            <td><a class="hola" onclick='deleteSell("${prod.id}")'><i class="delete_icon fas fa-trash"></i></a></td>
             </tr>`
+            console.log(prod.id)
             totalToPay(prod.productPrice * prod.quantity)
         });
       }
@@ -55,21 +57,40 @@ async function totalToPay(totalToPay){
     if(role === "admin"){
         htmlPaypal = ``
     }else{
-        htmlPaypal = `<button style="padding: 1rem; font-size: 2.5rem;" type="button" onclick='handleStock()' class="btn btn-warning btn_paypal">PAY WITH PAYPAL</button>`;
+        htmlPaypal = `<button style="padding: 1rem; font-size: 2.5rem;" type="button" onclick='payment(${currentTotal})' class="btn btn-warning btn_paypal">PAY WITH PAYPAL</button>`;
     }
     paypal.innerHTML = htmlPaypal;
 }
 
-async function handleStock(){
-    const getCurrentUser = await axios('/user/logIn');
+async function payment(currentTotal){
+    try{
+
+    axios.post(`/paypal/create-payment/${currentTotal}`).then(data=>{ redirectToPayment(data.data)})
+    descreaseStock()
+    }catch(e){
+        console.log(e)
+    }
+}
+
+async function descreaseStock(){
+    // DECREASE STOCK
+    const getCurrentUser = await axios.get('/user/logIn');
     const data = getCurrentUser.data.cart;
-    data.forEach((prod)=>{
-        console.log(prod.stock)
-        console.log(prod.quantity)
+    data.forEach(async (prod)=>{
         prod.stock = prod.stock - prod.quantity;
-        const decreaseStock = axios.post('/product/updateStock', prod)
+        const decreaseStock =  await axios.post('/product/updateStock', prod)
     })
 }
+
+async function redirectToPayment(link){
+    window.location.href = link;
+}
+
+async function deleteSell(id){
+    const deleteId = await axios.post(`/cart/deleteOrder/${id}`);
+    window.location.href = "http://localhost:3000/cart.html";
+}
+
 
 // lOGOUT
 async function logOut(){

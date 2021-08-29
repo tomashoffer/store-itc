@@ -39,12 +39,14 @@ var CartMethods = /** @class */ (function () {
         var allUsers = readAllUsers();
         allUsers[indexUser].cart.push(order);
         fs.writeFileSync(pathToUsersJson, JSON.stringify(allUsers));
-        // console.log(order)
-        // const array = 
-        // const allSells = readAllSells();
-        // fs.writeFileSync(pathToSellsJson, JSON.stringify(order));
     };
     ;
+    CartMethods.prototype.deleteOrder = function (idProduct, indexUser) {
+        var allUsers = readAllUsers();
+        var orderToNotDelete = allUsers[indexUser].cart.find(function (prod) { return prod.id !== idProduct; });
+        allUsers[indexUser].cart = [orderToNotDelete];
+        fs.writeFileSync(pathToUsersJson, JSON.stringify(allUsers));
+    };
     return CartMethods;
 }());
 exports.CartMethods = CartMethods;

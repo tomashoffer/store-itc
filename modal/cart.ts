@@ -34,12 +34,13 @@ export class CartMethods{
     const allUsers = readAllUsers();
     allUsers[indexUser].cart.push(order)
     fs.writeFileSync(pathToUsersJson, JSON.stringify(allUsers));
-
-    // console.log(order)
-    // const array = 
-    // const allSells = readAllSells();
-
-    // fs.writeFileSync(pathToSellsJson, JSON.stringify(order));
-
 };
+
+  deleteOrder(idProduct, indexUser){
+    const allUsers = readAllUsers();
+    const orderToNotDelete = allUsers[indexUser].cart.find(prod => prod.id !== idProduct);
+    allUsers[indexUser].cart = [orderToNotDelete]
+    fs.writeFileSync(pathToUsersJson, JSON.stringify(allUsers));
+
+  }
 }

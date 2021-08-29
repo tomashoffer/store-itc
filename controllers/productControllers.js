@@ -39,7 +39,6 @@ function deleteProd(req, res) {
 exports.deleteProd = deleteProd;
 function updateStock(req, res) {
     var updateStock = req.body;
-    console.log(updateStock);
     methodProd.decreseStock(updateStock);
     res.send({ "ok": 'success update stock' });
 }
