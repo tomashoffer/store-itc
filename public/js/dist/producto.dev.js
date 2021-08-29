@@ -25,7 +25,7 @@ function selectedProd() {
 function renderProducts(producto) {
   var root = document.querySelector(".camisa");
   var html = "";
-  html += "   <img class=\"camisa__imagen\" src=\"".concat(producto.productImage, "\" alt=\"Imagen del Producto\">\n\n      <div class=\"camisa__contenido\">\n          <h3>").concat(producto.productName, "</h3>\n          <p>").concat(producto.productDescription, "</p>\n          <h3>PRICE FOR EACH: $").concat(producto.productPrice, ",-</h3>\n          <h3>stock: ").concat(producto.stock, "</h3>\n\n          <form class=\"formulario\" onsubmit=\"handleProduct(event)\">\n              <select name=\"size\" class=\"formulario__campo\">\n                  <option disabled selected>-- Select Size --</option>\n                  <option value=\"XS\" class=\"option_size\">XS</option>\n                  <option value=\"M\" class=\"option_size\">M</option>\n                  <option value=\"L\" class=\"option_size\">L</option>\n              </select>\n              <input class=\"formulario__campo input_quantity\" type=\"number\" placeholder=\"Cantidad\" min=\"1\" name=\"quantity\">\n              <input class=\"formulario__submit\" type=\"submit\" value=\"Agregar al Carrito\">\n          </form>\n      </div> ");
+  html += "   <img class=\"camisa__imagen\" src=\"".concat(producto.productImage, "\" alt=\"Imagen del Producto\">\n\n      <div class=\"camisa__contenido\">\n          <h3>").concat(producto.productName, "</h3>\n          <p>").concat(producto.productDescription, "</p>\n          <h3>PRICE FOR EACH: $").concat(producto.productPrice, ",-</h3>\n          <h3>stock: ").concat(producto.stock, "</h3>\n\n          <form class=\"formulario\" onsubmit=\"handleProduct(event)\">\n              <select name=\"size\" class=\"formulario__campo\">\n                  <option disabled selected>-- Select Size --</option>\n                  <option value=\"XS\" class=\"option_size\">XS</option>\n                  <option value=\"M\" class=\"option_size\">M</option>\n                  <option value=\"L\" class=\"option_size\">L</option>\n              </select>\n              <input class=\"formulario__campo input_quantity\" type=\"number\" placeholder=\"Cantidad\" min=\"1\" name=\"quantity\">\n              <input class=\"formulario__submit\" onclick=\"alertCart()\" type=\"submit\" value=\"Agregar al Carrito\">\n          </form>\n      </div> ");
   root.innerHTML = html;
 }
 
@@ -59,6 +59,10 @@ function postOrder(newOrder) {
       }
     }
   });
+}
+
+function alertCart() {
+  swal("Good choice!!", "The item was added to the cart!", "success");
 } // lOGOUT
 
 

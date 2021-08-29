@@ -23,7 +23,7 @@ async function selectedProd(){
                   <option value="L" class="option_size">L</option>
               </select>
               <input class="formulario__campo input_quantity" type="number" placeholder="Cantidad" min="1" name="quantity">
-              <input class="formulario__submit" type="submit" value="Agregar al Carrito">
+              <input class="formulario__submit" onclick="alertCart()" type="submit" value="Agregar al Carrito">
           </form>
       </div> `;
       root.innerHTML = html;
@@ -39,6 +39,10 @@ function handleProduct(e){
 
 async function postOrder(newOrder) {
     const order = await axios.post('cart/postOrder', newOrder);
+}
+
+function alertCart(){
+    swal("Good choice!!", "The item was added to the cart!", "success");
 }
 
 // lOGOUT
