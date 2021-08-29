@@ -82,7 +82,7 @@ function selectedProd(id) {
 
 function handleAddProd(e) {
   e.preventDefault();
-  var productName = e.target.elements.productName.value;
+  var productName = e.target.elements.productName.value.toUpperCase();
   var productDescription = e.target.elements.productDescription.value;
   var productImage = e.target.elements.productImage.value;
   var productPrice = e.target.elements.productPrice.value;
@@ -298,7 +298,8 @@ var searchProduct = function searchProduct(ev) {
   try {
     ev.preventDefault();
     var _searchBar = ev.target.parentElement.elements.searchBar.value;
-    regExSurvey(_searchBar);
+    regExSurvey(_searchBar.toUpperCase());
+    console.log(_searchBar.toUpperCase());
   } catch (e) {
     console.error(e);
   }

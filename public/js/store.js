@@ -54,7 +54,7 @@ async function renderProducts(productos, role){
 // MODAL ADD
   function handleAddProd(e){
     e.preventDefault();
-    const productName = e.target.elements.productName.value;
+    const productName = e.target.elements.productName.value.toUpperCase();
     const productDescription = e.target.elements.productDescription.value;
     const productImage = e.target.elements.productImage.value;
     const productPrice = e.target.elements.productPrice.value;
@@ -131,7 +131,8 @@ async function refresh() {
       try {
           ev.preventDefault();
           const searchBar = ev.target.parentElement.elements.searchBar.value;
-          regExSurvey(searchBar);
+          regExSurvey(searchBar.toUpperCase());
+          console.log(searchBar.toUpperCase());
       } catch (e) {
           console.error(e)
       }
