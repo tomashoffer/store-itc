@@ -36,6 +36,7 @@ a {
 img {
     width: 100%;
 }
+
 /* CLASS FOR HIDE ADMIN Function */
 .hidden{
     display: none !important;
