@@ -25,7 +25,7 @@ async function register(newUser){
         const response = await axios.post('/user/register', newUser);
         console.log(response)
         if (response.data) {
-            window.location.href = "http://localhost:3000/logIn.html";
+            window.location.href = "http://localhost:3000/index.html";
         }  
     }catch(error){
         console.log(error.response);
