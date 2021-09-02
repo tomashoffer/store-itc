@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000 
+const port = process.env.PORT || 3000; 
 const cookieParser = require('cookie-parser');
 const fs = require("fs");
 const corsOptions = {origin: '*'}
@@ -28,6 +28,6 @@ app.use('/cart', cartRoute);
 app.use('/paypal', paypalRoute);
 
 
-app.listen(port, () => { console.log('listen on 3000') })
+app.listen(port, () => { console.log('listen server on 3000') })
 
 

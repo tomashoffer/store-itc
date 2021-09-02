@@ -1,13 +1,17 @@
 async function selectedProd(){
     const getProdSelected = await axios(`/product`);
     const data = getProdSelected.data;
+    const getCurrentUser = await axios('/user/logIn');
+    const welcomeMessage = document.querySelector('#welcome');
+    welcomeMessage.innerHTML = `Welcome, ${getCurrentUser.data.name}`
+
     renderProducts(data);
   }
 
   function renderProducts(producto){
     const root = document.querySelector(".camisa");
     let html = "";
-      html += `   <img class="camisa__imagen" src="${producto.productImage}" alt="Imagen del Producto">
+      html += `   <img class="camisa__imagen" src="images/${producto.productImage}" alt="Imagen del Producto">
 
       <div class="camisa__contenido">
           <h3>${producto.productName}</h3>

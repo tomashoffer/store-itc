@@ -6,9 +6,13 @@ var uuidv4 = require("uuid").v4;
 var cookieParser = require("cookie-parser");
 var methodProd = new product_1.ProductMethods();
 var allProds = product_1.readAllProducts();
+var fs = require("fs");
+var path = require('path');
+var pathToProductJson = path.resolve(__dirname, '../db/product.json');
 function addProducts(req, res) {
     var id = uuidv4();
-    var product = new product_1.Product(req.body.productName, req.body.productDescription, req.body.productImage, req.body.productPrice, req.body.stock, id);
+    var filename = req.file.filename;
+    var product = new product_1.Product(req.body.productName, req.body.productDescription, filename, req.body.productPrice, req.body.stock, id);
     methodProd.addProduct(product);
     res.send({ ok: 'product added successfully' });
 }
@@ -26,8 +30,11 @@ exports.getProdSelected = getProdSelected;
 function editProducts(req, res) {
     var idEditProd = req.cookies.idEditProd;
     var productIndex = allProds.findIndex(function (prod) { return prod.id === idEditProd; });
-    var newProdData = new product_1.Product(req.body.productName, req.body.productDescription, req.body.productImage, req.body.productPrice, req.body.stock, idEditProd);
-    methodProd.editProducto(productIndex, newProdData);
+    var filename = req.file.filename;
+    var newProdData = new product_1.Product(req.body.productName, req.body.productDescription, filename, req.body.productPrice, req.body.stock, idEditProd);
+    console.log(newProdData);
+    allProds[productIndex] = newProdData;
+    fs.writeFileSync(pathToProductJson, JSON.stringify(allProds));
     res.send({ "ok": 'success edit' });
 }
 exports.editProducts = editProducts;

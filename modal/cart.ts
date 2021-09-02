@@ -27,8 +27,6 @@ export class Cart{
 }
 
 
-
-
 export class CartMethods{  
   addCart(indexUser, order){
     const allUsers = readAllUsers();

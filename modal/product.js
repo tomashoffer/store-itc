@@ -4,6 +4,8 @@ exports.ProductMethods = exports.Product = exports.readAllProducts = void 0;
 var fs = require("fs");
 var path = require('path');
 var pathToProductJson = path.resolve(__dirname, '../db/product.json');
+var multer = require("multer");
+var uuidv4 = require("uuid").v4;
 function readAllProducts() {
     var allProd = fs.readFileSync(pathToProductJson);
     return JSON.parse(allProd);
@@ -24,38 +26,37 @@ var Product = /** @class */ (function () {
 exports.Product = Product;
 var ProductMethods = /** @class */ (function () {
     function ProductMethods() {
+        this.products = readAllProducts();
     }
+    ProductMethods.prototype.updateJsonProduct = function () {
+        fs.writeFileSync(pathToProductJson, JSON.stringify(this.products));
+    };
     ProductMethods.prototype.addProduct = function (prod) {
-        var allProducts = readAllProducts();
-        allProducts.push(prod);
-        fs.writeFileSync(pathToProductJson, JSON.stringify(allProducts));
-        return allProducts;
+        this.products.push(prod);
+        this.updateJsonProduct();
     };
     ;
     ProductMethods.prototype.editProducto = function (productIndex, editData) {
-        var allProducts = readAllProducts();
-        allProducts[productIndex].productName = editData.productName;
-        allProducts[productIndex].productDescription = editData.productDescription;
-        allProducts[productIndex].productImage = editData.productImage;
-        allProducts[productIndex].productPrice = editData.productPrice;
-        allProducts[productIndex].stock = editData.stock;
-        fs.writeFileSync(pathToProductJson, JSON.stringify(allProducts));
-        return allProducts;
+        this.products[productIndex].productName = editData.productName;
+        this.products[productIndex].productDescription = editData.productDescription;
+        this.products[productIndex].productImage = editData.filename;
+        console.log(editData.filename);
+        this.products[productIndex].productPrice = editData.productPrice;
+        this.products[productIndex].stock = editData.stock;
+        this.updateJsonProduct();
     };
     ProductMethods.prototype.deleteProducto = function (id) {
-        var allProducts = readAllProducts();
-        var deleteProd = allProducts.filter(function (prod) { return prod.id !== id; });
-        fs.writeFileSync(pathToProductJson, JSON.stringify(deleteProd));
+        this.products = this.products.filter(function (prod) { return prod.id !== id; });
+        this.updateJsonProduct();
     };
     ProductMethods.prototype.decreseStock = function (updateStock) {
-        var allProducts = readAllProducts();
+        var _this = this;
         var arrStock = Object.values(updateStock);
         arrStock.forEach(function (prod) {
-            var findProdIndex = allProducts.findIndex(function (prod) { return prod.id === updateStock.id; });
-            allProducts[findProdIndex] = updateStock;
-            fs.writeFileSync(pathToProductJson, JSON.stringify(allProducts));
+            var findProdIndex = _this.products.findIndex(function (prod) { return prod.id === updateStock.id; });
+            _this.products[findProdIndex] = updateStock;
+            _this.updateJsonProduct();
         });
-        return allProducts;
     };
     return ProductMethods;
 }());

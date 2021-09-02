@@ -1,7 +1,7 @@
 "use strict";
 
 function renderTable() {
-  var getCurrentUser, data, role, getAllUsers, dataAllUsers, root, html;
+  var getCurrentUser, data, role, getAllUsers, dataAllUsers, welcomeMessage, root, html;
   return regeneratorRuntime.async(function renderTable$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -13,13 +13,14 @@ function renderTable() {
           getCurrentUser = _context.sent;
           data = getCurrentUser.data.cart;
           role = getCurrentUser.data.role;
-          console.log(role);
-          _context.next = 8;
+          _context.next = 7;
           return regeneratorRuntime.awrap(axios('/user/allUsers'));
 
-        case 8:
+        case 7:
           getAllUsers = _context.sent;
           dataAllUsers = getAllUsers.data;
+          welcomeMessage = document.querySelector('#welcome');
+          welcomeMessage.innerHTML = "Welcome, ".concat(getCurrentUser.data.name);
           root = document.querySelector(".cart_row");
           html = "";
 
@@ -27,13 +28,13 @@ function renderTable() {
             dataAllUsers.forEach(function (user) {
               var allCarts = user.cart;
               allCarts.forEach(function (cart) {
-                html += "<tr>\n            <th scope=\"row\"><img style=\"height: 6rem; width: 6rem;\" src=\"".concat(cart.productImage, "\" alt=\"\"></th>\n            <td>").concat(cart.productName, "</td>\n            <td>").concat(cart.size, "</td>\n            <td>").concat(cart.quantity, "</td>\n            <td>").concat(cart.productPrice, "</td>\n            <td>").concat(cart.productPrice * cart.quantity, "</td>\n            </tr>");
+                html += "<tr>\n            <th scope=\"row\"><img style=\"height: 6rem; width: 6rem;\" src=\"images/".concat(cart.productImage, "\" alt=\"\"></th>\n            <td>").concat(cart.productName, "</td>\n            <td>").concat(cart.size, "</td>\n            <td>").concat(cart.quantity, "</td>\n            <td>").concat(cart.productPrice, "</td>\n            <td>").concat(cart.productPrice * cart.quantity, "</td>\n            <td>-</td>\n            </tr>");
                 totalToPay(cart.productPrice * cart.quantity);
               });
             });
           } else {
             data.forEach(function (prod) {
-              html += "<tr>\n            <th scope=\"row\"><img style=\"height: 6rem; width: 6rem;\" src=\"".concat(prod.productImage, "\" alt=\"\"></th>\n            <td>").concat(prod.productName, "</td>\n            <td>").concat(prod.size, "</td>\n            <td>").concat(prod.quantity, "</td>\n            <td>").concat(prod.productPrice, "</td>\n            <td>").concat(prod.productPrice * prod.quantity, "</td>\n            <td><a class=\"hola\" onclick='deleteSell(\"").concat(prod.id, "\")'><i class=\"delete_icon fas fa-trash\"></i></a></td>\n            </tr>");
+              html += "<tr>\n            <th scope=\"row\"><img style=\"height: 6rem; width: 6rem;\" src=\"images/".concat(cart.productImage, "\" alt=\"\"></th>\n            <td>").concat(prod.productName, "</td>\n            <td>").concat(prod.size, "</td>\n            <td>").concat(prod.quantity, "</td>\n            <td>").concat(prod.productPrice, "</td>\n            <td>").concat(prod.productPrice * prod.quantity, "</td>\n            <td><a class=\"hola\" onclick='deleteSell(\"").concat(prod.id, "\")'><i class=\"delete_icon fas fa-trash\"></i></a></td>\n            </tr>");
               console.log(prod.id);
               totalToPay(prod.productPrice * prod.quantity);
             });
@@ -41,7 +42,7 @@ function renderTable() {
 
           root.innerHTML = html;
 
-        case 14:
+        case 15:
         case "end":
           return _context.stop();
       }

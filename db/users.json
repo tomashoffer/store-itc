@@ -6,7 +6,16 @@
         "role": "admin",
         "id": "dfd47494-602a-4b2a-9030-a372b7f225b3",
         "cart": [
-            
+            {
+                "productName": "NUEVAHEROKU",
+                "productDescription": "remera arg",
+                "productImage": "80d16ac1-2afc-47e2-92dc-332cf1257512_milan.jpg",
+                "productPrice": "22",
+                "stock": "22",
+                "id": "4d9ac800-fdae-4e9d-a0a2-8a3834162de9",
+                "size": "XS",
+                "quantity": "2"
+            }
         ]
     },
     {
@@ -39,8 +48,7 @@
         "password": "$2b$10$w0X4z4aA1YZ/OOcg7AEVmeoehjlEzWnA4xhWc3ANASU5Kr0k6jBIy",
         "role": "user",
         "id": "080881d4-47ba-407f-b54d-8b2b62bc432e",
-        "cart": [
-        ]
+        "cart": []
     },
     {
         "name": "tomas",

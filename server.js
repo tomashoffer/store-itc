@@ -23,4 +23,4 @@ app.use('/user', userRoute);
 app.use('/product', productRoute);
 app.use('/cart', cartRoute);
 app.use('/paypal', paypalRoute);
-app.listen(port, function () { console.log('listen on 3000'); });
+app.listen(port, function () { console.log('listen server on 3000'); });

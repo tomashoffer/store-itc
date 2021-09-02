@@ -2,10 +2,11 @@ async function renderTable(){
     const getCurrentUser = await axios('/user/logIn');
     const data = getCurrentUser.data.cart;
     const role = getCurrentUser.data.role;
-    console.log(role)
-
     const getAllUsers = await axios('/user/allUsers');
     const dataAllUsers = getAllUsers.data;
+
+    const welcomeMessage = document.querySelector('#welcome');
+    welcomeMessage.innerHTML = `Welcome, ${getCurrentUser.data.name}`
 
     const root = document.querySelector(".cart_row");
     let html = "";
@@ -14,12 +15,13 @@ async function renderTable(){
             const allCarts = user.cart;
             allCarts.forEach((cart) =>{
                 html += `<tr>
-            <th scope="row"><img style="height: 6rem; width: 6rem;" src="${cart.productImage}" alt=""></th>
+            <th scope="row"><img style="height: 6rem; width: 6rem;" src="images/${cart.productImage}" alt=""></th>
             <td>${cart.productName}</td>
             <td>${cart.size}</td>
             <td>${cart.quantity}</td>
             <td>${cart.productPrice}</td>
             <td>${cart.productPrice * cart.quantity}</td>
+            <td>-</td>
             </tr>`
             totalToPay(cart.productPrice * cart.quantity)
             })
@@ -28,7 +30,7 @@ async function renderTable(){
       }else{
         data.forEach((prod)=>{
             html += `<tr>
-            <th scope="row"><img style="height: 6rem; width: 6rem;" src="${prod.productImage}" alt=""></th>
+            <th scope="row"><img style="height: 6rem; width: 6rem;" src="images/${cart.productImage}" alt=""></th>
             <td>${prod.productName}</td>
             <td>${prod.size}</td>
             <td>${prod.quantity}</td>

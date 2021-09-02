@@ -140,7 +140,18 @@ h3 {
 .delete_icon{
     color: var(--blanco);
 }
-
+.previewImage {
+    width: 100px;
+    margin: auto;
+    display: flex;
+    margin-top: 5px;
+  }
+.previewImageAdd {
+    width: 100px;
+    margin: auto;
+    display: flex;
+    margin-top: 5px;
+  }
 
 /** Graficos **/
 .grafico {

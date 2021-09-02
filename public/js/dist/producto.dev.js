@@ -1,7 +1,7 @@
 "use strict";
 
 function selectedProd() {
-  var getProdSelected, data;
+  var getProdSelected, data, getCurrentUser, welcomeMessage;
   return regeneratorRuntime.async(function selectedProd$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -12,9 +12,16 @@ function selectedProd() {
         case 2:
           getProdSelected = _context.sent;
           data = getProdSelected.data;
+          _context.next = 6;
+          return regeneratorRuntime.awrap(axios('/user/logIn'));
+
+        case 6:
+          getCurrentUser = _context.sent;
+          welcomeMessage = document.querySelector('#welcome');
+          welcomeMessage.innerHTML = "Welcome, ".concat(getCurrentUser.data.name);
           renderProducts(data);
 
-        case 5:
+        case 10:
         case "end":
           return _context.stop();
       }
@@ -25,7 +32,7 @@ function selectedProd() {
 function renderProducts(producto) {
   var root = document.querySelector(".camisa");
   var html = "";
-  html += "   <img class=\"camisa__imagen\" src=\"".concat(producto.productImage, "\" alt=\"Imagen del Producto\">\n\n      <div class=\"camisa__contenido\">\n          <h3>").concat(producto.productName, "</h3>\n          <p>").concat(producto.productDescription, "</p>\n          <h3>PRICE FOR EACH: $").concat(producto.productPrice, ",-</h3>\n          <h3>stock: ").concat(producto.stock, "</h3>\n\n          <form class=\"formulario\" onsubmit=\"handleProduct(event)\">\n              <select name=\"size\" class=\"formulario__campo\">\n                  <option disabled selected>-- Select Size --</option>\n                  <option value=\"XS\" class=\"option_size\">XS</option>\n                  <option value=\"M\" class=\"option_size\">M</option>\n                  <option value=\"L\" class=\"option_size\">L</option>\n              </select>\n              <input class=\"formulario__campo input_quantity\" type=\"number\" placeholder=\"Cantidad\" min=\"1\" name=\"quantity\">\n              <input class=\"formulario__submit\" onclick=\"alertCart()\" type=\"submit\" value=\"Agregar al Carrito\">\n          </form>\n      </div> ");
+  html += "   <img class=\"camisa__imagen\" src=\"images/".concat(producto.productImage, "\" alt=\"Imagen del Producto\">\n\n      <div class=\"camisa__contenido\">\n          <h3>").concat(producto.productName, "</h3>\n          <p>").concat(producto.productDescription, "</p>\n          <h3>PRICE FOR EACH: $").concat(producto.productPrice, ",-</h3>\n          <h3>stock: ").concat(producto.stock, "</h3>\n\n          <form class=\"formulario\" onsubmit=\"handleProduct(event)\">\n              <select name=\"size\" class=\"formulario__campo\">\n                  <option disabled selected>-- Select Size --</option>\n                  <option value=\"XS\" class=\"option_size\">XS</option>\n                  <option value=\"M\" class=\"option_size\">M</option>\n                  <option value=\"L\" class=\"option_size\">L</option>\n              </select>\n              <input class=\"formulario__campo input_quantity\" type=\"number\" placeholder=\"Cantidad\" min=\"1\" name=\"quantity\">\n              <input class=\"formulario__submit\" onclick=\"alertCart()\" type=\"submit\" value=\"Agregar al Carrito\">\n          </form>\n      </div> ");
   root.innerHTML = html;
 }
 

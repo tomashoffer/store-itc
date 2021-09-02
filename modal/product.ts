@@ -1,16 +1,21 @@
 const fs = require("fs");
 const path = require('path');
 const pathToProductJson = path.resolve(__dirname, '../db/product.json')
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+
 
 export function readAllProducts(){
   const allProd = fs.readFileSync(pathToProductJson);
   return JSON.parse(allProd);
 };
 
+
+
 export class Product{
     productName:string;
     productDescription:string;
-    productImage?: string;
+    productImage: string;
     productPrice:number;
     stock: number;
     id: string
@@ -26,35 +31,37 @@ export class Product{
 
 
 export class ProductMethods{  
+  products: Array<Product>;
+  constructor(){
+    this.products = readAllProducts();
+  }
+  updateJsonProduct(){
+    fs.writeFileSync(pathToProductJson, JSON.stringify(this.products));
+  }
   addProduct(prod){
-    const allProducts = readAllProducts();
-    allProducts.push(prod);
-    fs.writeFileSync(pathToProductJson, JSON.stringify(allProducts));
-    return allProducts;
+    this.products.push(prod);
+    this.updateJsonProduct();
   };
   editProducto(productIndex, editData){
-    const allProducts = readAllProducts();
-    allProducts[productIndex].productName = editData.productName;
-    allProducts[productIndex].productDescription = editData.productDescription;
-    allProducts[productIndex].productImage = editData.productImage;
-    allProducts[productIndex].productPrice = editData.productPrice;
-    allProducts[productIndex].stock = editData.stock;
-    fs.writeFileSync(pathToProductJson, JSON.stringify(allProducts));
-    return allProducts;
+    this.products[productIndex].productName = editData.productName;
+    this.products[productIndex].productDescription = editData.productDescription;
+    this.products[productIndex].productImage = editData.filename;
+    console.log(editData.filename)
+    this.products[productIndex].productPrice = editData.productPrice;
+    this.products[productIndex].stock = editData.stock;
+    this.updateJsonProduct();
+
   }
   deleteProducto(id){
-    const allProducts = readAllProducts();
-    const deleteProd = allProducts.filter(prod => prod.id !== id);
-    fs.writeFileSync(pathToProductJson, JSON.stringify(deleteProd));
+    this.products = this.products.filter(prod => prod.id !== id);
+    this.updateJsonProduct();
   }
   decreseStock(updateStock){
-    const allProducts = readAllProducts();
     const arrStock = Object.values(updateStock)
     arrStock.forEach((prod)=>{
-      const findProdIndex = allProducts.findIndex((prod)=> prod.id === updateStock.id);
-      allProducts[findProdIndex] = updateStock;
-      fs.writeFileSync(pathToProductJson, JSON.stringify(allProducts));
-    })  
-    return allProducts;
+      const findProdIndex =  this.products.findIndex((prod)=> prod.id === updateStock.id);
+      this.products[findProdIndex] = updateStock;
+      this.updateJsonProduct();
+    }) 
   }
 }
